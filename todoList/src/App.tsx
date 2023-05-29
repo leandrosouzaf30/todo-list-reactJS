@@ -1,9 +1,21 @@
 import { Header } from './components/Header'
+import { NewTask } from './components/NewTask'
+
+import style from "./App.module.css"
+
 import './global.css'
 
 export function App() {
   return (
-    <Header />
+    <>
+      <Header />
+      <div className={style.boxTodo}>
+        <main>
+          <NewTask />
+          <div>LIST TODO</div>
+        </main>
+      </div>
+    </>
   )
 }
 

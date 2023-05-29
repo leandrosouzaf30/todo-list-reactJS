@@ -1,0 +1,11 @@
+.boxTodo {
+    display: flex;
+    justify-content: center;
+    margin-top: -1.5rem;
+}
+
+.boxTodo main {
+    width: 736px;
+}
+
+
