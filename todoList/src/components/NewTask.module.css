@@ -32,3 +32,30 @@
 .newTask button span {
     margin-right: 0.5rem;
 }
+
+.detalTasks{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4rem;
+    margin-bottom: 1.5rem;
+}
+
+.detalTasksCriadas{
+    color: var(--blue);
+    font-size: 0.87rem;
+    font-weight: 700;
+}
+
+.detalTasksCriadas span{
+    padding: 2px 8px;
+    background: var(--gray-400);
+    color: var(--white);
+    border-radius: 999px;
+    margin-left: 0.5rem;
+}
+
+.detalTasksConcluidas{
+    color: var(--purple);
+    font-size: 0.87rem;
+    font-weight: 700;
+}

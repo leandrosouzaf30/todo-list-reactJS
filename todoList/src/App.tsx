@@ -12,7 +12,6 @@ export function App() {
       <div className={style.boxTodo}>
         <main>
           <NewTask />
-          <div>LIST TODO</div>
         </main>
       </div>
     </>
