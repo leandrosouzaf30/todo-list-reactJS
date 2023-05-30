@@ -1,5 +1,5 @@
 import { Header } from './components/Header'
-import { NewTask } from './components/NewTask'
+import { Task } from './components/Task'
 
 import style from "./App.module.css"
 
@@ -11,7 +11,7 @@ export function App() {
       <Header />
       <div className={style.boxTodo}>
         <main>
-          <NewTask />
+          <Task />
         </main>
       </div>
     </>

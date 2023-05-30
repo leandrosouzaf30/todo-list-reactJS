@@ -1,15 +1,13 @@
 import { PlusCircle } from "phosphor-react"
-import style from "./NewTask.module.css"
-import { useState } from "react"
-import { Tasks } from "./Tasks"
+import style from "./Task.module.css"
+import { ChangeEvent, FormEvent, useState } from "react"
+import { TaskList } from "./TaskList"
 
-export function NewTask(){
-    const [tasks, setTasks] = useState([
-        'Estudar'
-    ])
+export function Task(){
+    const [tasks, setTasks] = useState(['Estudar'])
     const [newTask, setnewTask] = useState('')
 
-    function handleAddTask(){
+    function handleAddTask(event:FormEvent){
         event?.preventDefault()
 
         setTasks([...tasks, newTask])
@@ -17,12 +15,12 @@ export function NewTask(){
         
     }
 
-    function handleNewTaskChange(){
+    function handleNewTaskChange(event: ChangeEvent<HTMLInputElement>){
         setnewTask(event?.target.value)
         
     }
 
-    function deleteTask(taskToDelete){
+    function deleteTask(taskToDelete:string){
         const tasksWithoutDeleteOne = tasks.filter(task=>{
             return task !== taskToDelete
         })
@@ -55,9 +53,9 @@ export function NewTask(){
                 </div>
                 {tasks.map(task=>{
                     return (
-                        <Tasks 
+                        <TaskList 
                             key={task} 
-                            content={task} 
+                            task={task} 
                             onDeleteTask={deleteTask} 
                         />
                     )

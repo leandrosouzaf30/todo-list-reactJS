@@ -7,6 +7,21 @@
     border-radius: 8px;
 }
 
+.content button {
+    background: transparent;
+    border: 0;
+    border-radius: 2px;
+    color: var(--gray-300);
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+}
+
+.content footer button:hover {
+    color: var(--green-200);
+}
+
 .content span{
     display: flex;
     align-items: center;

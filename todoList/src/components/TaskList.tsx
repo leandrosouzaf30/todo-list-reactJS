@@ -1,15 +1,21 @@
 import { Trash } from 'phosphor-react'
-import style from './Tasks.module.css'
+import style from './TaskList.module.css'
 
-export function Tasks({content, onDeleteTask}){
+
+interface TaskProps {
+    task: string,
+    onDeleteTask: (task:string) => void;
+}
+
+export function TaskList({task, onDeleteTask}:TaskProps){
     function handleDeleteTask(){
-        onDeleteTask(content)
+        onDeleteTask(task)
     }
     return(
         <div className={style.content}>
             <span>
                 <input type='checkbox' className={style.checkboxRound} />
-                {content}
+                {task}
             </span>
             <button onClick={handleDeleteTask}>
                 <Trash size={20}/>
