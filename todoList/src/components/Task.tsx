@@ -1,23 +1,44 @@
-import { PlusCircle } from "phosphor-react"
+import { List, PlusCircle } from "phosphor-react"
 import style from "./Task.module.css"
-import { ChangeEvent, FormEvent, useState } from "react"
+import { ChangeEvent, FormEvent, InvalidEvent, useState } from "react"
 import { TaskList } from "./TaskList"
 
-export function Task(){
-    const [tasks, setTasks] = useState(['Estudar'])
+interface Task{
+    description: string,
+    status: boolean
+}
+
+interface TaskProps {
+    task: Task
+}
+
+export function Task({task}:TaskProps){
+    const [tasks, setTasks] = useState([task.description])
     const [newTask, setnewTask] = useState('')
+    const [countTasksDone, setCountTasksDone] = useState(0)
+
+    function editStatusTask(status: boolean){
+        if(status){
+            setCountTasksDone(countTasksDone+1)
+        }else{ 
+            setCountTasksDone(countTasksDone-1) 
+        } 
+    }
+    
 
     function handleAddTask(event:FormEvent){
         event?.preventDefault()
-
         setTasks([...tasks, newTask])
         setnewTask('')
-        
     }
 
     function handleNewTaskChange(event: ChangeEvent<HTMLInputElement>){
+        event.target.setCustomValidity('')
         setnewTask(event?.target.value)
-        
+    }
+
+    function handleNewTaskInvalid(event: InvalidEvent<HTMLInputElement>){
+        event?.target.setCustomValidity('Esse campo é obrigatório!')
     }
 
     function deleteTask(taskToDelete:string){
@@ -25,8 +46,8 @@ export function Task(){
             return task !== taskToDelete
         })
 
-        setTasks(tasksWithoutDeleteOne)
-        
+        setTasks(tasksWithoutDeleteOne)   
+        setCountTasksDone(countTasksDone-1)
     }
 
     return(
@@ -37,6 +58,8 @@ export function Task(){
                     value={newTask}
                     placeholder="Adicione uma nova tarefa" 
                     onChange={handleNewTaskChange}
+                    onInvalid={handleNewTaskInvalid}
+                    required
                 />
                 <button type="submit">
                     <span>Criar</span>
@@ -47,16 +70,22 @@ export function Task(){
                 <div className={style.detalTasks}>
                     <div className={style.detalTasksCriadas}>
                         Tarefas criadas
-                        <span>{tasks.length}</span>
+                        <span className={style.detalTasksProgress}>{tasks.length}</span>
                     </div>
-                    <div className={style.detalTasksConcluidas}>Concluidas</div>
+                    <div className={style.detalTasksConcluidas}>
+                        Concluidas
+                        <span className={style.detalTasksProgress}>
+                           {countTasksDone} de {tasks.length}
+                        </span>
+                    </div>
                 </div>
                 {tasks.map(task=>{
                     return (
                         <TaskList 
                             key={task} 
                             task={task} 
-                            onDeleteTask={deleteTask} 
+                            onDeleteTask={deleteTask}
+                            onEditStatus={editStatusTask}
                         />
                     )
                 })}

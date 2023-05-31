@@ -46,16 +46,16 @@
     font-weight: 700;
 }
 
-.detalTasksCriadas span{
+.detalTasksConcluidas{
+    color: var(--purple);
+    font-size: 0.87rem;
+    font-weight: 700;
+}
+
+.detalTasksProgress{
     padding: 2px 8px;
     background: var(--gray-400);
     color: var(--white);
     border-radius: 999px;
     margin-left: 0.5rem;
-}
-
-.detalTasksConcluidas{
-    color: var(--purple);
-    font-size: 0.87rem;
-    font-weight: 700;
 }
